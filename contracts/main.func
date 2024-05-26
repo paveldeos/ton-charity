@@ -1,0 +1,40 @@
+global target_wallet: slice;
+global target_amount: int;
+global admin_wallet: slice;
+
+() main() {
+    admin_wallet = get_msg_sender();
+
+    var ds = get_data().begin_parse();
+    target_wallet = ds.load_ref().begin_parse().load_slice();
+    target_amount = ds.load_int(257);
+
+    return ();
+}
+
+(int) get_balance() {
+    return get_balance();
+}
+
+() complete_fundraiser() {
+    if (get_msg_sender() != admin_wallet) {
+        throw(101); 
+    }
+
+    if (get_balance() >= target_amount) {
+        slice target_message = begin_cell()
+            .store_slice(target_wallet)
+            .store_grams(target_amount)
+            .end_cell().begin_parse();
+
+        send_raw_message(target_message, 1);
+
+        return ();
+    } else {
+        return ();
+    }
+}
+
+() recv_internal(int my_balance) {
+    return ();
+}

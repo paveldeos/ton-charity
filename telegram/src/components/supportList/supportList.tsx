@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './supportList.css';
 
 function SupportList() {
+    const navigate = useNavigate();
+
     return (
         <div className="support">
             <div className="support-title">Support</div>
@@ -31,7 +34,7 @@ function SupportList() {
                         </div>
                         <hr color='#EAECF0' />
                         <div className="item-buttons">
-                            <button className="item-button-donate">
+                            <button onClick={() => navigate('/donate')} className="item-button-donate">
                                 <span>Donate</span>
                                 <div className="item-button-logo" />
                             </button>

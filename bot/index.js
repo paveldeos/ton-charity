@@ -4,7 +4,7 @@ require('dotenv').config();
 
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-bot.start((ctx) => ctx.reply('https://t.me/notashit_bot/notashitcoin_game'));
+bot.start((ctx) => ctx.reply('https://t.me/ton_charity_bot/TONCharity'));
 bot.launch();
 
 
