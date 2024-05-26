@@ -1,0 +1,21 @@
+{
+    "name": "database",
+    "version": "1.0.0",
+    "main": "./src/index.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "node ./src/index.js",
+        "dev": "nodemon ./src/index.js",
+        "db:init": "node ./src/initDb.js",
+        "test": "mocha --exit"
+    },
+    "dependencies": {
+        "express": "^4.19.2",
+        "pg": "^8.11.5"
+    },
+    "devDependencies": {
+        "supertest": "^7.0.0",
+        "mocha": "^10.4.0",
+        "chai": "^5.1.1"
+    }
+}

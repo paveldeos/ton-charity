@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+    db:
+        image: postgres:latest
+        environment:
+            POSTGRES_USER: tonuser
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: campaigns
+        ports:
+            - "5432:5432"
+        volumes:
+            - db_data:/var/lib/postgresql/data
+
+    db-server:
+        build:
+            context: ./database
+        environment:
+            DATABASE_USER: tonuser
+            DATABASE_PASSWORD: password
+            DATABASE_HOST: db
+            DATABASE_PORT: 5432
+            DATABASE_NAME: campaigns
+        ports:
+            - "3000:3000"
+        depends_on:
+            - db
+        volumes:    
+            - ./database:/usr/src/app
+    
+    telegram-bot:
+        build:
+            context: ./bot
+
+volumes:
+    db_data:
