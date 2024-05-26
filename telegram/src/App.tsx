@@ -1,7 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import twaLogo from './assets/tapps.png'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 import WebApp from '@twa-dev/sdk'
@@ -9,15 +5,20 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react'
 import Header from './components/header/header'
 import ProfileStats from './components/profileStats/profileStats'
 import SupportList from './components/supportList/supportList'
+import About from './components/about/about'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import MainPage from './components/mainPage/mainPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <TonConnectUIProvider manifestUrl="https://localhost:5173/tonconnect-manifest.json">
-      <Header />
-      <ProfileStats />
-      <SupportList />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/donate" element={<ProfileStats />} />
+        </Routes>
+      </Router>
     </TonConnectUIProvider>
   )
 }
